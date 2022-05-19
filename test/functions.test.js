@@ -1,5 +1,10 @@
 // IMPORT MODULES under test here:
-import { addAllAges, greetUsers, greetUsersOverAge60 } from "../functions.js";
+import {
+  addAllAges,
+  getAverageCoolFactor,
+  greetUsers,
+  greetUsersOverAge60,
+} from "../functions.js";
 import customers from "./data.js";
 
 const { test, skip } = QUnit;
@@ -90,12 +95,12 @@ test("addAllAges", (expect) => {
   expect.deepEqual(actual, expected);
 });
 
-skip("getAverageCoolFactor", (expect) => {
-  const expected = true;
+test("getAverageCoolFactor", (expect) => {
+  const expected = 5.088888888888889;
 
-  const actual = true;
+  const actual = getAverageCoolFactor(customers);
 
-  expect.equal(actual, expected);
+  expect.deepEqual(actual, expected);
 });
 
 skip("getTotalOfEachGender", (expect) => {
