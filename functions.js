@@ -17,9 +17,14 @@ Output:
 */
 
 export function greetUsersOverAge60(customers) {
-  return customers;
   // first, filter over the user to get the ones over 60
+  const overSixty = customers.filter((customer) => customer.age >= 60);
+
   // then map over them to make a greeting
+  const greeting = overSixty.map(
+    ({ first_name, last_name }) => `Hello ${first_name} ${last_name}!`
+  );
+  return greeting;
 }
 
 /* 
