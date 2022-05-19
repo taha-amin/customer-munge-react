@@ -34,7 +34,13 @@ Output:
 
 export function addAllAges(customers) {
   // reduce through the customers to make a sum
-  return true;
+  const sum = customers.reduce((previousValue, customer) => {
+    previousValue += customer.age;
+
+    return previousValue;
+  }, 0);
+
+  return sum;
 }
 
 /* 
