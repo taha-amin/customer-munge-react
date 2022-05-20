@@ -133,17 +133,27 @@ Output:
 
 export function getGenderBreakdownOfEachCar(customers) {
   const carMake = customers.reduce((previousValue, customer) => {
-    if (previousValue[customer.car_make]) {
-      previousValue[customer.car_make]++;
-    } else {
-      previousValue[customer.car_make] = 1;
-    }
+    // if (previousValue[customer.car_make]) {
+    //   previousValue[customer.car_make]++;
+    // } else {
+    //   previousValue[customer.car_make] = 1;
+    // }
+    // return previousValue;
 
-    return previousValue;
+    const genderBooger = customers.reduce((acc, customer) => {
+      if (acc[customer.gender]) {
+        acc[customer.gender]++;
+      } else {
+        acc[customer.gender] = 1;
+      }
+      return acc;
+    }, {});
+
+    return { ...previousValue, [customer.car_make]: genderBooger };
   }, {});
 
-  console.log(carMake);
-  return true;
+  // console.log(carMake);
+  return carMake;
 }
 
 /* 
