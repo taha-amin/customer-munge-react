@@ -167,6 +167,11 @@ Output:
 */
 
 export function getAllCoolFactorsOfEachCar(customers) {
+  const allCoolFactors = customers.reduce((acc, customer) => {
+    return { ...acc, [customer.car_make]: [customer.cool_factor] };
+  }, {});
+  console.log(allCoolFactors);
+
   return true;
 }
 
