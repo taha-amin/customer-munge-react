@@ -51,14 +51,12 @@ Output:
 export function getAverageCoolFactor(customers) {
   // map through to make an array of cool factors
   const coolFactor = customers.map(({ cool_factor }) => cool_factor);
-  console.log(coolFactor);
   // then reduce through that array to get a sum
   const sum = coolFactor.reduce((previousValue, currentCoolFactor) => {
     previousValue += currentCoolFactor;
 
     return previousValue;
   }, 0);
-  console.log(sum);
   // then divide by the total number of customers
 
   return sum / customers.length;
@@ -134,6 +132,17 @@ Output:
 */
 
 export function getGenderBreakdownOfEachCar(customers) {
+  const carMake = customers.reduce((previousValue, customer) => {
+    if (previousValue[customer.car_make]) {
+      previousValue[customer.car_make]++;
+    } else {
+      previousValue[customer.car_make] = 1;
+    }
+
+    return previousValue;
+  }, {});
+
+  console.log(carMake);
   return true;
 }
 
