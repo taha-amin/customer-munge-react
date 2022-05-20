@@ -167,12 +167,20 @@ Output:
 */
 
 export function getAllCoolFactorsOfEachCar(customers) {
-  const allCoolFactors = customers.reduce((acc, customer) => {
-    return { ...acc, [customer.car_make]: [customer.cool_factor] };
-  }, {});
-  console.log(allCoolFactors);
+  const allCoolFactors = customers.reduce((previousValue, customer) => {
+    const booger = customers.reduce((acc, customer) => {
+      if (customer.cool_factor) {
+        acc.push(customer.cool_factor);
+      }
 
-  return true;
+      return acc;
+    }, []);
+
+    return { ...previousValue, [customer.car_make]: booger };
+  }, {});
+  // console.log(allCoolFactors);
+
+  return allCoolFactors;
 }
 
 /////////////////////////////// STRETCH GOALS ///////////////////////////////////////
