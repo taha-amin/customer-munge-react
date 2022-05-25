@@ -147,6 +147,8 @@ export function getGenderBreakdownOfEachCar(customers) {
 
     return { ...previousValue, [customer.car_make]: customerBooger };
   }, {});
+  console.log("Gender Breakdown of each car");
+  console.log(carMake);
 
   return carMake;
 }
@@ -163,29 +165,17 @@ Output:
 
 export function getAllCoolFactorsOfEachCar(customers) {
   const allCoolFactors = customers.reduce((previousValue, customer) => {
-    if (!previousValue[customer.car_make]) {
-      previousValue[customer.car_make] = customers
-        .filter((allCustomer) => customer.car_make === allCustomer.car_make)
-        .reduce((acc, customer) => {
-          if (customer.cool_factor) {
-            acc.push(customer.cool_factor);
-          }
-          return acc;
-        }, []);
-    }
-    // const booger = customers.reduce((acc, customer) => {
-    //   if (customer.cool_factor) {
-    //     acc.push(customer.cool_factor);
-    //   }
+    const coolFactorBooger = customers
+      .filter((allCustomer) => customer.car_make === allCustomer.car_make)
+      .reduce((acc, customer) => {
+        acc.push(customer.cool_factor);
+        return acc;
+      }, []);
 
-    //   return acc;
-    // }, []);
-
-    //   return { ...previousValue, [customer.car_make]: booger };
-    // }, {});
-    // console.log(allCoolFactors);
-    return previousValue;
+    return { ...previousValue, [customer.car_make]: coolFactorBooger };
   }, {});
+  console.log("All cool factors of each car");
+  console.log(allCoolFactors);
 
   return allCoolFactors;
 }
