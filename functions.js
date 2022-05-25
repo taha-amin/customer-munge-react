@@ -181,17 +181,29 @@ Output:
 
 export function getAllCoolFactorsOfEachCar(customers) {
   const allCoolFactors = customers.reduce((previousValue, customer) => {
-    const booger = customers.reduce((acc, customer) => {
-      if (customer.cool_factor) {
-        acc.push(customer.cool_factor);
-      }
+    if (!previousValue[customer.car_make]) {
+      previousValue[customer.car_make] = customers
+        .filter((allCustomer) => customer.car_make === allCustomer.car_make)
+        .reduce((acc, customer) => {
+          if (customer.cool_factor) {
+            acc.push(customer.cool_factor);
+          }
+          return acc;
+        }, []);
+    }
+    // const booger = customers.reduce((acc, customer) => {
+    //   if (customer.cool_factor) {
+    //     acc.push(customer.cool_factor);
+    //   }
 
-      return acc;
-    }, []);
+    //   return acc;
+    // }, []);
 
-    return { ...previousValue, [customer.car_make]: booger };
+    //   return { ...previousValue, [customer.car_make]: booger };
+    // }, {});
+    // console.log(allCoolFactors);
+    return previousValue;
   }, {});
-  // console.log(allCoolFactors);
 
   return allCoolFactors;
 }
